@@ -4,6 +4,11 @@ databases:
     user: temporal
     plan: Starter
     region: frankfurt
+  - name: temporal-db-visibility
+    databaseName: visibility
+    user: visibility
+    plan: Starter
+    region: frankfurt
 
 services:
   - type: pserv
@@ -47,4 +52,24 @@ services:
       - key: POSTGRES_SEEDS
         fromDatabase:
           name: temporal-db
+          property: host
+      - key: VISIBILITY_DBNAME
+        fromDatabase:
+          name: temporal-db-visibility
+          property: database
+      - key: VISIBILITY_DB_PORT
+        fromDatabase:
+          name: temporal-db-visibility
+          property: port
+      - key: VISIBILITY_POSTGRES_USER
+        fromDatabase:
+          name: temporal-db-visibility
+          property: user
+      - key: VISIBILITY_POSTGRES_PWD
+        fromDatabase:
+          name: temporal-db-visibility
+          property: password
+      - key: VISIBILITY_POSTGRES_SEEDS
+        fromDatabase:
+          name: temporal-db-visibility
           property: host
